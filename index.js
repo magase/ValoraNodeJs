@@ -46,10 +46,16 @@ app.get('/incidencias/:usuario_creador/:usuario_asignado/:estado_incidencia/:cat
     let fecha_final = req.params.fecha_final
     let nombre_incidencia = req.params.nombre_incidencia
     let descripcion = req.params.descripcion
-    agregarIncidencia(usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creacion, fecha_final, nombre_incidencia, descripcion)
+    agregarIncidencia(usuario_creador,usuario_asignado,estado_incidencia,categoria_incidencia,fecha_creacion,fecha_final,nombre_incidencia,descripcion)
     res.redirect('/')
 
-    console.log(usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creacion, fecha_final, nombre_incidencia, descripcion)
+    console.log(usuario_creador,usuario_asignado,estado_incidencia,categoria_incidencia,fecha_creacion,fecha_final,nombre_incidencia,descripcion)
 
 })
+
+
+
+
+
+
 

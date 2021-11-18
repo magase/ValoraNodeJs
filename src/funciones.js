@@ -16,9 +16,9 @@ const btnCrearIncidencia = document.querySelector('#btn_CrearIncidencia')
 
 btnSignUp.addEventListener('click', function(){
     window.location.href = `signup/${email.value}/${nombreUsuario.value}/${categoriaUsuario.value}`
-})
+});
 
 btnCrearIncidencia.addEventListener('click', function(){
     window.location.href = `incidencias/${usuario_creador.value}/${usuario_asignado.value}/${estado_incidencia.value}/${categoria_incidencia.value}/${fecha_creacion.value}/${fecha_final.value}/${nombre_incidencia.value}/${descripcion.value}`
-})
+});
 
