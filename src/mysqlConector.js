@@ -3,8 +3,8 @@ import mysql from 'mysql';
 //Crear la conextion
 const conector = mysql.createConnection({
     host: 'localhost',
-    user: 'valora',
-    password: 'valora',
+    user: 'root',
+    password: '',
     database: 'valora'
 })
 
@@ -24,8 +24,8 @@ const agregarUser = (email, password, nombreUsuario, categoriaUsuario) => {
     })
 }
 
-const agregarIncidencia = (usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creación, fecha_final, nombre_incidencia, descripcion) => {
-    const sql = `INSERT INTO tbl_usuarios (id, usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creación, fecha_final, nombre_incidencia, descripcion) values ("${null}", "${usuario_creador}", "${usuario_asignado}", "${estado_incidencia}", "${categoria_incidencia}", "${fecha_creación}", "${fecha_final}", "${nombre_incidencia}", "${descripcion}")`
+const agregarIncidencia = (usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creacion, fecha_final, nombre_incidencia, descripcion) => {
+    const sql = `INSERT INTO tbl_incidencias (id, usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creacion, fecha_final, nombre_incidencia, descripcion) values (${null}, "${usuario_creador}", "${usuario_asignado}", "${estado_incidencia}", "${categoria_incidencia}", "${fecha_creacion}", "${fecha_final}", "${nombre_incidencia}", "${descripcion}")`
     conector.query(sql, function(err, result, filed){
         if(err) throw err
         console.log(result)
@@ -34,6 +34,8 @@ const agregarIncidencia = (usuario_creador, usuario_asignado, estado_incidencia,
 
 export {
     conectar,
-    agregarUser
+    agregarUser,
+    agregarIncidencia
+
 }
 

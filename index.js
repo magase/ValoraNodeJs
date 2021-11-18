@@ -1,5 +1,5 @@
 import express from 'express'
-import {conectar, agregarUser} from './src/mysqlConector.js'
+import {conectar, agregarUser, agregarIncidencia} from './src/mysqlConector.js'
 const app = express()
 
 
@@ -37,19 +37,19 @@ app.get('/signup/:email/:nombreUsuario/:categoriaUsuario', function(req, res){
 
 })
 
-app.get('incidencias/:usuario_creador.value}/:usuario_asignado.value}/:estado_incidencia.value}/:categoria_incidencia.value}', function(req, res){
+app.get('/incidencias/:usuario_creador/:usuario_asignado/:estado_incidencia/:categoria_incidencia/:fecha_creacion/:fecha_final/:nombre_incidencia/:descripcion', function(req, res){
     let usuario_creador = req.params.usuario_creador
     let usuario_asignado = req.params.usuario_asignado
     let estado_incidencia = req.params.estado_incidencia
     let categoria_incidencia = req.params.categoria_incidencia
-    let fecha_creación = req.params.fecha_creación
+    let fecha_creacion = req.params.fecha_creacion
     let fecha_final = req.params.fecha_final
     let nombre_incidencia = req.params.nombre_incidencia
     let descripcion = req.params.descripcion
-    agregarIncidencia(usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creación, fecha_final, nombre_incidencia, descripcion)
+    agregarIncidencia(usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creacion, fecha_final, nombre_incidencia, descripcion)
     res.redirect('/')
 
-    console.log(usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creación, fecha_final, nombre_incidencia, descripcion)
+    console.log(usuario_creador, usuario_asignado, estado_incidencia, categoria_incidencia, fecha_creacion, fecha_final, nombre_incidencia, descripcion)
 
 })
 
