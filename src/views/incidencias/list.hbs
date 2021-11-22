@@ -4,6 +4,13 @@
         <div class="col-md-4">
             <div class="card text-center p-4">
                 <div class="car-body">
+                    <aside style="float:right;">
+                        <small>
+                            <b>
+                                {{id}}
+                            </b>
+                        </small>
+                    </aside>
                     <a href="{{nombre_incidencia}}">
                         <h3 class="card-title text-uppercase">
                             {{nombre_incidencia}}
@@ -13,13 +20,13 @@
                         {{descripcion}}
                     </p>
                     <p>
-                        {{timeago fecha_creacion}}
+                        <i class="bi bi-clock"></i> {{timeago fecha_creacion}}
                     </p>
                     <a href="/incidencias/delete/{{id}}" class="btn btn-danger">
-                        Delete
+                        <i class="bi bi-x-circle"></i> Cerrar
                     </a>
                     <a href="/incidencias/edit/{{id}}" class="btn btn-secondary">
-                        Edit
+                        <i class="bi bi-pencil"></i> Editar
                     </a>
                 </div>
             </div>
