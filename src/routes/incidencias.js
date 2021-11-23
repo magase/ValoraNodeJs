@@ -40,6 +40,7 @@ router.post('/add', async(req, res) =>{
     await pool.query(`INSERT INTO tbl_incidencias set ?`, [newIncidencia]);
     req.flash('success', 'Incidencia creada correctamente')
     res.redirect('/incidencias');
+    console.log(fecha_creacion);
 })
 
 router.get('/', async(req, res) =>{
