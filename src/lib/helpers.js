@@ -10,7 +10,7 @@ helpers.encryptPassword = async (password) => {
 
 helpers.matchPassword = async (password, savePassword) => {
   try {
-   return await bcrypt.compare(password, savePassword);
+    await bcrypt.compare(password, savePassword);
   } catch (err) {
     console.log(err);
   }
