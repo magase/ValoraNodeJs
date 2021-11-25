@@ -34,6 +34,7 @@ router.post('/add', isLoggedIn, async(req, res) =>{
     //    descripcion,
     //};
     const newIncidencia = {
+        usuario_creador: req.user.nombre_usuario,
         categoria_incidencia,
         nombre_incidencia,
         prioridad_incidencia,
