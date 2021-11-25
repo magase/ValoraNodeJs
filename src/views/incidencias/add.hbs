@@ -1,0 +1,43 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/incidencias/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="from-control"
+                                name="nombre_incidencia" placeholder="Nombre incidencia" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="from-control"
+                                name="categoria_incidencia" placeholder="Categoria" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="mdb-select custom-select" name="prioridad_incidencia">
+                                <option value="" disabled hidden selected>Prioridad</option>
+                                <option value="Baja">Baja</option>
+                                <option value="Media">Media</option>
+                                <option value="Alta">Alta</option>
+                            </select> 
+                        </div>
+                        <div class="form-group">
+                            <select class="mdb-select custom-select" name="estado_incidencia">
+                                <option value="Pendiente" disabled>Pendiente</option>
+                                <option value="Abierta" selected>Abierta</option>
+                                <option value="Cerrada" disabled>Cerrada</option>
+                            </select> 
+                        </div>  
+                        <div class="form-group">
+                            <textarea class="form-control" rows="2" placeholder="Descripcion" name="descripcion" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
