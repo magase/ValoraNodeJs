@@ -15,6 +15,7 @@ router.post('/add', isLoggedIn, async(req, res) =>{
     const { usuario_creador,
         usuario_asignado,
         estado_incidencia,
+        prioridad_incidencia,
         categoria_incidencia,
         fecha_creacion,
         fecha_final,
@@ -34,7 +35,9 @@ router.post('/add', isLoggedIn, async(req, res) =>{
     //};
     const newIncidencia = {
         categoria_incidencia,
-        nombre_incidencia, 
+        nombre_incidencia,
+        prioridad_incidencia,
+        estado_incidencia, 
         descripcion,
     };
     //await pool.query(`INSERT INTO tbl_incidencias (id,usuario_creador,usuario_asignado,estado_incidencia,categoria_incidencia,fecha_creacion,fecha_final,nombre_incidencia,descripcion) values (${null},"${usuario_creador}","${usuario_asignado}","${estado_incidencia}","${categoria_incidencia}","${fecha_creacion}","${fecha_final}","${nombre_incidencia}","${descripcion}")`);
@@ -65,10 +68,12 @@ router.get('/edit/:id', isLoggedIn, async (req, res)=>{
 
 router.post('/edit/:id', isLoggedIn, async (req, res)=>{
     const { id } = req.params;
-    const { categoria_incidencia, nombre_incidencia, descripcion } = req.body;
+    const { categoria_incidencia, nombre_incidencia, prioridad_incidencia, estado_incidencia, descripcion } = req.body;
     const newIncidencia = {
         categoria_incidencia,
-        nombre_incidencia, 
+        nombre_incidencia,
+        prioridad_incidencia,
+        estado_incidencia, 
         descripcion
     };
     await pool.query('UPDATE tbl_incidencias set ? WHERE id = ?', [newIncidencia, id]);
