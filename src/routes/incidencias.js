@@ -9,6 +9,19 @@ router.get('/add',  isLoggedIn, (req, res) =>{
    //res.send('Form')
 
 });
+router.get('/pendiente',  isLoggedIn, (req, res) =>{
+    res.render('incidencias/pendiente')
+ 
+ });
+router.get('/abierta',  isLoggedIn, (req, res) =>{
+    res.render('incidencias/abierta')
+ 
+ });
+ router.get('/cerrada',  isLoggedIn, (req, res) =>{
+    res.render('incidencias/cerrada')
+ 
+ });
+ 
 
 router.post('/add', isLoggedIn, async(req, res) =>{
     //Destructuracion del los elementos traidos por req
