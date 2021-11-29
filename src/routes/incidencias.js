@@ -47,6 +47,7 @@ router.post('/add', isLoggedIn, async(req, res) =>{
     //    descripcion,
     //};
     const newIncidencia = {
+        usuario_creador,
         categoria_incidencia,
         nombre_incidencia,
         prioridad_incidencia,
@@ -59,9 +60,12 @@ router.post('/add', isLoggedIn, async(req, res) =>{
     res.redirect('/incidencias');
 })
 
-router.get('/', isLoggedIn, async(req, res) =>{
-    const incidencias = await pool.query('SELECT * FROM tbl_incidencias')
-    console.log(incidencias)
+router.get('/:usuario', isLoggedIn, async(req, res,) =>{
+    const { usuario } = req.params;
+    console.log(usuario)
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where usuario_creador = ?', [usuario])
+    // console.log(incidencias)
+    // console.log(req.params.usuario);
     res.render('incidencias/list', { incidencias });
 })
 
