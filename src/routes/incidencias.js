@@ -70,13 +70,13 @@ router.get('/:usuario', isLoggedIn, async(req, res,) =>{
 })
 
 router.get('/delete/:id', isLoggedIn, async (req, res)=>{
-   const usuario = usuario_creador
    
    console.log(usuario)
     // const { id } = req.params;
     // await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
     // req.flash('success', 'Incidencia borrada')
-    // res.redirect('/incidencias/'+usuario_creador);
+    // res.redirect('/incidencias/');
+   
 });
 
 router.get('/edit/:id', isLoggedIn, async (req, res)=>{

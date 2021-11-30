@@ -17,7 +17,12 @@
 }
 
 .padding {
-    padding: 3rem !important
+    padding: 3rem !important;
+    display: flex;
+    align-content: center;
+    position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-card-full {
