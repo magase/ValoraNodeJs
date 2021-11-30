@@ -70,12 +70,12 @@ router.get('/:usuario', isLoggedIn, async(req, res,) =>{
 })
 
 router.get('/delete/:id', isLoggedIn, async (req, res)=>{
-   
-   console.log(usuario)
-    // const { id } = req.params;
-    // await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
-    // req.flash('success', 'Incidencia borrada')
-    // res.redirect('/incidencias/');
+    const usuario_creador = req.user.nombre_usuario
+    console.log(usuario_creador);
+    const { id } = req.params;
+    await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
+    req.flash('success', 'Incidencia borrada')
+    res.redirect('/incidencias/'+usuario_creador);
    
 });
 
@@ -97,10 +97,11 @@ router.post('/edit/:id', isLoggedIn, async (req, res)=>{
         estado_incidencia, 
         descripcion
     };
+    const usuario = req.user.nombre_usuario
     console.log(usuario_creador)
     await pool.query('UPDATE tbl_incidencias set ? WHERE id = ?', [newIncidencia, id]);
     req.flash('success', 'Incidencia actualizada')
-    res.redirect('/incidencias/'+usuario_creador);
+    res.redirect('/incidencias/'+usuario);
 });
 
 
