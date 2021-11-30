@@ -1,5 +1,6 @@
 const express = require('express') 
 const router = express.Router()
+const multer  = require('multer')
 
 const pool = require('../database');
 const {isLoggedIn, isNotLoggedIn} = require('../lib/auth');
@@ -21,28 +22,16 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         fecha_final,
         nombre_incidencia, 
         descripcion } = req.body
-
-    //Creacion de la variable con los datos para la query
-    //const newIncidencia = {
-    //    usuario_creador,
-    //    usuario_asignado,
-    //    estado_incidencia,
-    //    categoria_incidencia,
-    //    fecha_creacion,
-    //    fecha_final,
-    //    nombre_incidencia, 
-    //    descripcion,
-    //};
     const newIncidencia = {
         usuario_creador: req.user.nombre_usuario,
         categoria_incidencia,
         nombre_incidencia,
         prioridad_incidencia,
-        estado_incidencia, 
+        estado_incidencia: "Abierta", 
         descripcion,
     };
-    //await pool.query(`INSERT INTO tbl_incidencias (id,usuario_creador,usuario_asignado,estado_incidencia,categoria_incidencia,fecha_creacion,fecha_final,nombre_incidencia,descripcion) values (${null},"${usuario_creador}","${usuario_asignado}","${estado_incidencia}","${categoria_incidencia}","${fecha_creacion}","${fecha_final}","${nombre_incidencia}","${descripcion}")`);
     await pool.query(`INSERT INTO tbl_incidencias set ?`, [newIncidencia]);
+    console.log(req.file);
     req.flash('success', 'Incidencia creada correctamente')
     res.redirect('/incidencias');
 })

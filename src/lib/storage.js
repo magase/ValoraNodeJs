@@ -14,5 +14,9 @@ const uploadImage = multer({
     limits: {fileSize: 1000000}
 }).single('image');
 
+app.post('/add', (req, res) => {
+    // 'profile_pic' is the name of our file input field in the HTML form
+    let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('file');
+})
 
 module.exports = router;

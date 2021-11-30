@@ -6,13 +6,15 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const MySQLStore = require('express-mysql-session')
 const passport = require('passport')
+const multer  = require('multer')
 
+require('./lib/passport')
 
 
 const { database } = require('./keys')
 
 const app = express();
-require('./lib/passport')
+
 
 //settings
 app.set('views', path.join(__dirname, 'views'))
@@ -41,12 +43,14 @@ app.use(session({
     saveUninitialized: false, 
     store: new MySQLStore(database)
 }));
-app.use(flash())
-app.use(morgan('dev'))
-app.use(express.urlencoded({extended: false}))
-app.use(express.json())
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(flash());
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 
 //Variables globales
@@ -61,6 +65,7 @@ app.use((req, res, next) =>{
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use('/incidencias', require('./routes/incidencias'));
+
 
 //Public 
 app.use(express.static(path.join(__dirname, 'public')));
