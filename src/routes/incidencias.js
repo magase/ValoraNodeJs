@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const pool = require('../database');
-const {isLoggedIn, isNotLoggedIn} = require('../lib/auth');
+const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 
 router.get('/add',  isLoggedIn, (req, res) =>{
    res.render('incidencias/add')
@@ -63,10 +63,8 @@ router.post('/add', isLoggedIn, async(req, res) =>{
 router.get('/:usuario', isLoggedIn, async(req, res,) =>{
     const { usuario } = req.params;
     console.log(usuario)
-    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where usuario_creador = ?', [usuario])
-    // console.log(incidencias)
-    // console.log(req.params.usuario);
-    res.render('incidencias/list', { incidencias });
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where usuario_creador = ?', [usuario])
+    res.render('incidencias/list', { incidencias});
 })
 
 router.get('/delete/:id', isLoggedIn, async (req, res)=>{
@@ -82,7 +80,7 @@ router.get('/delete/:id', isLoggedIn, async (req, res)=>{
 router.get('/edit/:id', isLoggedIn, async (req, res)=>{
     const { id } = req.params;
     const incidencia = await pool.query('SELECT * FROM tbl_incidencias WHERE id = ?', [id]);
-    //console.log(incidencia[0])
+    console.log(incidencia[0])
     res.render('incidencias/edit', { incidencias: incidencia[0]  });
 });
 
