@@ -23,9 +23,9 @@ module.exports = {
 
         if (req.user.categoria_usuario == "tecnico"){
             const incidencias = await pool.query('SELECT * FROM tbl_incidencias')
-            res.render('incidencias/list', {incidencias});
+            return res.render('admin', {incidencias});
             console.log('sirve')
-            return next();
+             return next();
         } 
         console.log('no sirve')
         return res.redirect('/profile');
