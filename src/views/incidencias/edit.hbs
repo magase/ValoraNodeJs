@@ -19,16 +19,30 @@
                                 <option value="Media">Media</option>
                                 <option value="Alta">Alta</option>
                             </select> 
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <select class="mdb-select custom-select" name="estado_incidencia">
+                                <option value="Pendiente" disabled>Pendiente</option>
+                                <option value="Abierta" selected>Abierta</option>
+                                <option value="Cerrada" disabled>Cerrada</option>
+                            </select> 
+                        </div>  
+                          <div class="form-group" style="display: none">
+                            <select class="mdb-select custom-select" name="usuario_creador">
+                                <option value='{{user.nombre_usuario}}' selected></option>
+                            </select> 
                         </div> 
+                        {{!-- <div class="form-group">
+                            <select class="mdb-select custom-select" name="estado_incidencia">
+                                <option value="{{incidencias.estado_incidencia}}"selected hidden>{{incidencias.estado_incidencia}}</option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Abierta">Abierta</option>
+                                <option value="Cerrada">Cerrada</option>
+                            </select> 
+                        </div>  --}}
                         <div class="form-group">
                             <textarea class="form-control" rows="2" placeholder="Descripcion" name="descripcion">{{incidencias.descripcion}}</textarea>
                         </div>
-                        <div class="form-group">
-                            <div class="mb-3">
-                              <label for="formFile" class="form-label">Fotos</label>
-                              <input class="form-control" type="file" id="formFile">
-                            </div>
-                        </div>  
                         <div class="form-group">
                             <button class="btn btn-success btn-block">
                                 Save
