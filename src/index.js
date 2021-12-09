@@ -6,6 +6,7 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const MySQLStore = require('express-mysql-session')
 const passport = require('passport')
+const ember = require('ember')
 
 
 
@@ -23,8 +24,8 @@ app.engine('.hbs',
         partialsDir: path.join(app.get('views'), 'partials'),
         extname: '.hbs',
         helpers: require('./lib/handlebars')
-    })
-);
+        })
+    );
 app.set('view engine', '.hbs');
 
 
@@ -47,7 +48,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
-
 
 //Variables globales
 app.use((req, res, next) =>{

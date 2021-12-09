@@ -2,15 +2,14 @@ const pool = require('../database');
 
 
 module.exports = {
-    isLoggedIn (req, res, next) {
-        if (req.isAuthenticated()){
-            
-            return next();
+  isLoggedIn (req, res, next) {
+    if (req.isAuthenticated()){
+        
+        return next();
 
-        }
-        return res.redirect('/signin');
-    }, 
-
+    }
+    return res.redirect('/signin');
+}, 
     isNotLoggedIn(req, res, next) {
         if (!req.isAuthenticated()){
             return next();
@@ -45,7 +44,4 @@ isAdmin1: async (req, res, next) => {
     return res.redirect('/profile');
 }
 }
-
-    
-
 };
