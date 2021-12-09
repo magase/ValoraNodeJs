@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const pool = require('../database');
-const {isLoggedIn, isNotLoggedIn} = require('../lib/auth');
+const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 
 router.get('/add',  isLoggedIn, (req, res) =>{
    res.render('incidencias/add')
@@ -69,6 +69,15 @@ router.get('/:usuario', isLoggedIn, async(req, res,) =>{
     res.render('incidencias/list', { incidencias });
 })
 
+router.get('/assign/:id', isLoggedIn, async (req, res)=>{
+    const usuario_asignado = req.user.nombre_usuario
+    console.log(usuario_asignado);
+    const { id } = req.params;
+    await pool.query('UPDATE tbl_incidencias SET usuario_asignado = ? WHERE id = ?', [usuario_asignado, id]);
+    req.flash('success', 'Incidencia asignada')
+    res.redirect('/myIncidents');
+   
+})
 router.get('/delete/:id', isLoggedIn, async (req, res)=>{
     const usuario_creador = req.user.nombre_usuario
     console.log(usuario_creador);
