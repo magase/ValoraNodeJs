@@ -9,6 +9,7 @@ const passport = require('passport')
 const ember = require('ember')
 
 
+
 const { database } = require('./keys')
 
 const app = express();
@@ -23,8 +24,8 @@ app.engine('.hbs',
         partialsDir: path.join(app.get('views'), 'partials'),
         extname: '.hbs',
         helpers: require('./lib/handlebars')
-    })
-);
+        })
+    );
 app.set('view engine', '.hbs');
 
 
@@ -47,7 +48,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
-
 
 //Variables globales
 app.use((req, res, next) =>{

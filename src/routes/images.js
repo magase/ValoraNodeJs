@@ -1,22 +1,24 @@
-const express = require('express');
+const { Router } = require('express');
 const path = require('path');
-const fs = require('fs');
+
+const router = Router();
 const multer = require('multer');
-const { ExpressHandlebars } = require('express-handlebars');
-const upload = multer({dest: 'public/images'});
 
-const app = express();
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, '../public/uploads'), 
+    filename: (req, file, cb) =>{
+        cb(null, file.originalname);
+    }
+});
 
-app.set('views', path.join(__dirname,'edit-profile-image' ));
-app.set('edit-profile-image engine', 'handlebars');
+ const upload = multer({
+    storage,
+    dest: path.join(__dirname, '../public/uploads')
+}).single('imagen')
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
-app.use(express.static(path.join(__dirname, 'public')));
+router.post('/incidencias/add', upload,(req, res) =>{
+    console.log(req.file)
+    res.send('uploaded')
+});
 
-app.get('/edit-profile-image', (req, res) =>{
-    res.render('edit-profile-image')
-
-})
-
-module.exports = app
+module.exports = router;
