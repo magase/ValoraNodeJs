@@ -4,6 +4,12 @@
         <div class="col-md-4 p-3">
             <div class="card text-center p-4">
                 <div class="car-body">
+                    <div>
+                        <aside style="float:left;">
+                            <a id="btn-abrir-popup" class="btn-abrir-popup" style="color: black;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16"> <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/> <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/> </svg></a>
+                        </aside>
+                    </div>
+                    
                     <div style="border-style: ;">
                     <aside style="float:right;">
                         <small>
@@ -33,6 +39,19 @@
                 </div>
             </div>
         </div>
+        <div class="overlay" id="overlay">
+                                    <div class="popup" id="popup">
+                                        <a href="" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                                        <h3>COMENTARIO</h3>
+                                        <h4>Escriba un comentario si cree que es necesario para el tecnico</h4>
+                                        <form action="">
+                                            <div class="contenedor-inputs">
+                                                <input type="text" placeholder="Escribe...">
+                                            </div>
+                                            <input type="submit" class="btn-submit" value="Comentar">
+                                        </form>
+                                    </div>
+                                </div>
         {{else}}
         <div class="col-md-4 mx-auto">
             <div class="card card-body text-center">
