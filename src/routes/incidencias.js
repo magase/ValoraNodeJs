@@ -5,7 +5,8 @@ const pool = require('../database');
 const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 
 router.get('/add',  isLoggedIn, (req, res) =>{
-   res.render('incidencias/add')
+    console.log(req.file);
+    res.render('incidencias/add')
    //res.send('Form')
 
 });
