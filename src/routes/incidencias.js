@@ -5,21 +5,25 @@ const pool = require('../database');
 const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 
 router.get('/add',  isLoggedIn, (req, res) =>{
-    console.log(req.file);
+    console.log(req.files);
     res.render('incidencias/add')
    //res.send('Form')
 
 });
-router.get('/pendiente',  isLoggedIn, (req, res) =>{
-    res.render('incidencias/pendiente')
+
+router.get('/pendiente',  isLoggedIn, async(req, res) =>{
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Pendiente"')
+    res.render('incidencias/list', { incidencias});
  
  });
-router.get('/abierta',  isLoggedIn, (req, res) =>{
-    res.render('incidencias/abierta')
+router.get('/abierta',  isLoggedIn, async(req, res) =>{
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Abierta"')
+    res.render('incidencias/list', { incidencias});
  
  });
- router.get('/cerrada',  isLoggedIn, (req, res) =>{
-    res.render('incidencias/cerrada')
+ router.get('/cerrada',  isLoggedIn, async(req, res) =>{
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Cerrada"')
+    res.render('incidencias/list', { incidencias});
  
  });
  
@@ -36,17 +40,7 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         nombre_incidencia, 
         descripcion } = req.body
 
-    //Creacion de la variable con los datos para la query
-    //const newIncidencia = {
-    //    usuario_creador,
-    //    usuario_asignado,
-    //    estado_incidencia,
-    //    categoria_incidencia,
-    //    fecha_creacion,
-    //    fecha_final,
-    //    nombre_incidencia, 
-    //    descripcion,
-    //};
+
     const newIncidencia = {
         usuario_creador,
         categoria_incidencia,
@@ -67,6 +61,7 @@ router.get('/:usuario', isLoggedIn, async(req, res,) =>{
     const incidencias = await pool.query('SELECT * FROM tbl_incidencias where usuario_creador = ?', [usuario])
     res.render('incidencias/list', { incidencias});
 })
+
 
 router.get('/delete/:id', isLoggedIn, async (req, res)=>{
     const usuario_creador = req.user.nombre_usuario

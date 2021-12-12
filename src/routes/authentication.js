@@ -30,6 +30,7 @@ router.get('/profile',  isLoggedIn, (req, res) =>{
     res.render('profile')
 
 })
+
 router.get('/admin',  isLoggedIn, isAdmin, (req, res) =>{
     res.render('admin')
 }) 
