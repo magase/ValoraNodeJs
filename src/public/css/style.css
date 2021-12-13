@@ -1,3 +1,16 @@
+::-webkit-scrollbar{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow:  0 0 6px rgba(0,0,0,0.9);
+    background-color: #CCCCCC;
+}
+::-webkit-scrollbar-thumb{
+    background-color: gray;
+    background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 50%,transparent,transparent)
+}
+
 .footR{
     position: fixed;
     width: 100%;
@@ -13,7 +26,9 @@
   }
 
   body {
-    background-color: #f9f9fa
+    background-color: #f9f9fa;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
 }
 
 .padding {
