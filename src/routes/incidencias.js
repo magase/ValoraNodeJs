@@ -9,12 +9,12 @@ router.get('/add',  isLoggedIn, (req, res) =>{
    //res.send('Form')
 
 });
-
 router.get('/pendiente',  isLoggedIn, async(req, res) =>{
     const usuario  = req.user.nombre_usuario;
     console.log("Usuario: ", usuario)
     const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Pendiente" AND  usuario_creador = ?', [usuario])
-    res.render('incidencias/list', { incidencias}) 
+    res.render('incidencias/list', { incidencias})
+    console.log(incidencias) 
  });
 router.get('/abierta',  isLoggedIn, async(req, res) =>{
     const usuario  = req.user.nombre_usuario;
@@ -32,8 +32,6 @@ router.get('/abierta',  isLoggedIn, async(req, res) =>{
     res.render('incidencias/list', { incidencias})
  
  });
-
-
  
 
 router.post('/add', isLoggedIn, async(req, res) =>{
@@ -95,9 +93,8 @@ router.get('/delete/:id', isLoggedIn, async (req, res)=>{
     const usuario_creador = req.user.nombre_usuario
     console.log(usuario_creador);
     const { id } = req.params;
-    //await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
-    await pool.query('UPDATE `tbl_incidencias` SET `estado_incidencia`=? where id = ?', ["Cerrada",id]);
-    req.flash('success', 'Incidencia cerrada')
+    await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
+    req.flash('success', 'Incidencia borrada')
     res.redirect('/incidencias/'+usuario_creador);
    
 });
