@@ -5,17 +5,16 @@ const pool = require('../database');
 const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 
 router.get('/add',  isLoggedIn, (req, res) =>{
-    console.log(req.files);
-    res.render('incidencias/add')
+   res.render('incidencias/add')
    //res.send('Form')
 
 });
-
 router.get('/pendiente',  isLoggedIn, async(req, res) =>{
     const usuario  = req.user.nombre_usuario;
     console.log("Usuario: ", usuario)
     const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Pendiente" AND  usuario_creador = ?', [usuario])
-    res.render('incidencias/list', { incidencias}) 
+    res.render('incidencias/list', { incidencias})
+    console.log(incidencias) 
  });
 router.get('/abierta',  isLoggedIn, async(req, res) =>{
     const usuario  = req.user.nombre_usuario;
@@ -47,7 +46,17 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         nombre_incidencia, 
         descripcion } = req.body
 
-
+    //Creacion de la variable con los datos para la query
+    //const newIncidencia = {
+    //    usuario_creador,
+    //    usuario_asignado,
+    //    estado_incidencia,
+    //    categoria_incidencia,
+    //    fecha_creacion,
+    //    fecha_final,
+    //    nombre_incidencia, 
+    //    descripcion,
+    //};
     const newIncidencia = {
         usuario_creador,
         categoria_incidencia,
@@ -65,18 +74,27 @@ router.post('/add', isLoggedIn, async(req, res) =>{
 router.get('/:usuario', isLoggedIn, async(req, res,) =>{
     const { usuario } = req.params;
     console.log(usuario)
-    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where usuario_creador = ?', [usuario])
-    res.render('incidencias/list', { incidencias});
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where usuario_creador = ?', [usuario])
+    // console.log(incidencias)
+    // console.log(req.params.usuario);
+    res.render('incidencias/list', { incidencias });
 })
 
-
+router.get('/assign/:id', isLoggedIn, async (req, res)=>{
+    const usuario_asignado = req.user.nombre_usuario
+    console.log(usuario_asignado);
+    const { id } = req.params;
+    await pool.query('UPDATE tbl_incidencias SET usuario_asignado = ? WHERE id = ?', [usuario_asignado, id]);
+    req.flash('success', 'Incidencia asignada')
+    res.redirect('/myIncidents');
+   
+})
 router.get('/delete/:id', isLoggedIn, async (req, res)=>{
     const usuario_creador = req.user.nombre_usuario
     console.log(usuario_creador);
     const { id } = req.params;
-    //await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
-    await pool.query('UPDATE `tbl_incidencias` SET `estado_incidencia`=? where id = ?', ["Cerrada",id]);
-    req.flash('success', 'Incidencia cerrada')
+    await pool.query('DELETE FROM tbl_incidencias where id = ?', [id]);
+    req.flash('success', 'Incidencia borrada')
     res.redirect('/incidencias/'+usuario_creador);
    
 });
@@ -84,7 +102,7 @@ router.get('/delete/:id', isLoggedIn, async (req, res)=>{
 router.get('/edit/:id', isLoggedIn, async (req, res)=>{
     const { id } = req.params;
     const incidencia = await pool.query('SELECT * FROM tbl_incidencias WHERE id = ?', [id]);
-    console.log(incidencia[0])
+    //console.log(incidencia[0])
     res.render('incidencias/edit', { incidencias: incidencia[0]  });
 });
 

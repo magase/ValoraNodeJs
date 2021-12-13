@@ -1,0 +1,58 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each incidencias}}
+        <div class="col-md-4 p-3">
+            <div class="card text-center p-4">
+                <div class="car-body">
+                    <a href="{{nombre_incidencia}}" class="hoverOff">
+                        <h3 class="card-title text-uppercase">
+                            {{nombre_incidencia}}
+                        </h3>
+                    </a>
+                    <p class="m-2">
+                        {{descripcion}}
+                    </p>
+                    <a href="/incidencias/delete/{{id}}" class="btn btn-danger">
+                        <i class="bi bi-x-circle"></i> Cerrar
+                    </a>
+                    <a href="/incidencias/edit/{{id}}" class="btn btn-secondary">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <hr>
+
+                    <div class="d-flex flex-row justify-content-center align-items-center time-text">
+                        <small>{{estado_incidencia}}</small>
+                        <span class="dots"></span>
+                        <small><i class="bi bi-hash"></i> {{id}}</small>
+                        <span class="dots"></span>
+                        <small><i class="bi bi-clock"></i> {{timeago fecha_creacion}}</small>
+                        <span class="dots"></span>
+                        <small><i class="bi bi-person-check"></i> {{usuario_asignado}}</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="overlay" id="overlay">
+            <div class="popup" id="popup">
+                <a href="" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                <h3>COMENTARIO</h3>
+                <h4>Escriba un comentario si cree que es necesario para el tecnico</h4>
+                <form action="">
+                    <div class="contenedor-inputs">
+                        <input type="text" placeholder="Escribe...">
+                    </div>
+                    <input type="submit" class="btn-submit" value="Comentar">
+                </form>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay incidencias creadas</p>
+                <a href="/incidencias/add">Crear incidencia</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

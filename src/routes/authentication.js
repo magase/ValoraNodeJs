@@ -1,8 +1,8 @@
 const express = require('express'); 
 const router = express.Router();
-const pool = require('../database');
 const passport = require('passport');
-const { isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
+const { isLoggedIn, isNotLoggedIn, isAdmin, isAdmin1} = require('../lib/auth');
+
 
 router.get('/signup', isNotLoggedIn, (req, res) =>{
     res.render('auth/signup')
@@ -33,7 +33,13 @@ router.get('/profile',  isLoggedIn, (req, res) =>{
 
 router.get('/admin',  isLoggedIn, isAdmin, (req, res) =>{
     res.render('admin')
-}) 
+
+})
+router.get('/myIncidents',  isLoggedIn, isAdmin1, (req, res) =>{
+    res.render('admin/myIncidents')
+
+})
+
 
 
 router.get('/logout', isLoggedIn, (req, res)=> {

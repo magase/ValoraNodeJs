@@ -6,8 +6,8 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const MySQLStore = require('express-mysql-session')
 const passport = require('passport')
-const ember = require('ember')
-const multer = require('multer')
+
+
 
 const { database } = require('./keys')
 
@@ -17,23 +17,15 @@ require('./lib/passport')
 //settings
 app.set('views', path.join(__dirname, 'views'))
 app.engine('.hbs', 
-engine({ 
-    defaultLayout: "main", 
-    layoutsDir: path.join(app.get('views'), 'layouts'),
-    partialsDir: path.join(app.get('views'), 'partials'),
-    extname: '.hbs',
-    helpers: require('./lib/handlebars')
-})
+    engine({ 
+        defaultLayout: "main", 
+        layoutsDir: path.join(app.get('views'), 'layouts'),
+        partialsDir: path.join(app.get('views'), 'partials'),
+        extname: '.hbs',
+        helpers: require('./lib/handlebars')
+    })
 );
 app.set('view engine', '.hbs');
-
-
-const storage = multer.diskStorage({
-    destination: path.join(__dirname, "public/uploads"),
-    filename: (req, file, cb) => {
-      cb(null, file.originalname);
-    },
-  });
 
 
 //Iniciar el server
@@ -55,12 +47,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
-
-const upload = multer({
-    storage,
-    dest: path.join(__dirname, "public/uploads"),
-  }).array('image');
-app.use(upload);
 
 
 //Variables globales
