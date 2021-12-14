@@ -5,14 +5,17 @@
                 <div class="card-body">
                     <form action="/incidencias/edit/{{incidencias.id}}" method="POST">
                         <div class="form-group">
-                            <input type="text" value="{{incidencias.nombre_incidencia}}" class="from-control"
+                            <span>Título</span>
+                            <input type="text" value="{{incidencias.nombre_incidencia}}" class="form-control"
                                 name="nombre_incidencia" placeholder="Nombre incidencia" autofocus>
                         </div>
                         <div class="form-group">
-                            <input type="text" value="{{incidencias.categoria_incidencia}}" class="from-control"
+                            <span>Categoría</span>
+                            <input type="text" value="{{incidencias.categoria_incidencia}}" class="form-control"
                                 name="categoria_incidencia" placeholder="Categoria">
                         </div>
                         <div class="form-group">
+                            <span>Prioridad</span>
                             <select class="mdb-select custom-select" name="prioridad_incidencia">
                                 <option value="{{incidencias.prioridad_incidencia}}" selected hidden>
                                     {{incidencias.prioridad_incidencia}}</option>
@@ -22,30 +25,13 @@
                             </select>
                         </div>
                         <div class="form-group" style="display: none">
-
-                            <select class="mdb-select custom-select" name="estado_incidencia">
-
-                                <option value="Pendiente" disabled>Pendiente</option>
-
-                                <option value="Abierta" selected>Abierta</option>
-
-                                <option value="Cerrada" disabled>Cerrada</option>
-
-                            </select>
-
-                        </div>
-
-                        <div class="form-group" style="display: none">
-
                             <select class="mdb-select custom-select" name="usuario_creador">
-
                                 <option value='{{user.nombre_usuario}}' selected></option>
-
                             </select>
-
                         </div>
                         {{#if user.tecnico}}
                         <div class="form-group">
+                            <span>Estado</span>
                             <select class="mdb-select custom-select" name="estado_incidencia">
                                 <option value="{{incidencias.estado_incidencia}}" selected hidden>
                                     {{incidencias.estado_incidencia}}</option>
@@ -54,10 +40,23 @@
                                 <option value="Cerrada">Cerrada</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <span>Comentarios del técnico</span>
+                            <textarea class="form-control" rows="2" placeholder="Comentarios"
+                                name="comentarios">{{incidencias.comentarios}}</textarea>
+                        </div>
                         {{/if}}
                         <div class="form-group">
+                            <span>Descripción</span>
                             <textarea class="form-control" rows="2" placeholder="Descripcion"
                                 name="descripcion">{{incidencias.descripcion}}</textarea>
+                        </div>
+                        <span>Comentarios del técnico</span>
+                        <br>
+                        <div class="card">
+                            <span>
+                                {{incidencias.comentarios}}
+                            </span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success btn-block">
