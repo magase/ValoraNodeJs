@@ -44,7 +44,8 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         fecha_creacion,
         fecha_final,
         nombre_incidencia, 
-        descripcion } = req.body
+        descripcion,
+        comentarios } = req.body
 
     //Creacion de la variable con los datos para la query
     //const newIncidencia = {
@@ -64,6 +65,7 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         prioridad_incidencia,
         estado_incidencia, 
         descripcion,
+        comentarios
     };
     //await pool.query(`INSERT INTO tbl_incidencias (id,usuario_creador,usuario_asignado,estado_incidencia,categoria_incidencia,fecha_creacion,fecha_final,nombre_incidencia,descripcion) values (${null},"${usuario_creador}","${usuario_asignado}","${estado_incidencia}","${categoria_incidencia}","${fecha_creacion}","${fecha_final}","${nombre_incidencia}","${descripcion}")`);
     await pool.query(`INSERT INTO tbl_incidencias set ?`, [newIncidencia]);
@@ -108,14 +110,15 @@ router.get('/edit/:id', isLoggedIn, async (req, res)=>{
 
 router.post('/edit/:id', isLoggedIn, async (req, res)=>{
     const { id } = req.params;
-    const { usuario_creador, categoria_incidencia, nombre_incidencia, prioridad_incidencia, estado_incidencia, descripcion } = req.body;
+    const { usuario_creador, categoria_incidencia, nombre_incidencia, prioridad_incidencia, estado_incidencia, descripcion, comentarios } = req.body;
     const newIncidencia = {
         usuario_creador,
         categoria_incidencia,
         nombre_incidencia,
         prioridad_incidencia,
         estado_incidencia, 
-        descripcion
+        descripcion,
+        comentarios
     };
     const usuario = req.user.nombre_usuario
     console.log(usuario_creador)
