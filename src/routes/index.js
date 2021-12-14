@@ -7,4 +7,5 @@ router.get('/', isNotLoggedIn, (req, res) => {
     res.render('auth/signin');
 })
 
+
 module.exports = router

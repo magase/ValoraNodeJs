@@ -39,7 +39,7 @@ app.use(session({
     secret: 'manuSesion',
     resave: false,
     saveUninitialized: false, 
-    store: new MySQLStore(database)
+    store: new MySQLStore(database) 
 }));
 app.use(flash())
 app.use(morgan('dev'))
