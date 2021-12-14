@@ -59,7 +59,7 @@ app.use(passport.session())
 const upload = multer({
     storage,
     dest: path.join(__dirname, "public/uploads"),
-  }).array('image');
+  }).single('image');
 app.use(upload);
 
 

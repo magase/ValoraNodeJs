@@ -5,7 +5,8 @@ const pool = require('../database');
 const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 
 router.get('/add',  isLoggedIn, (req, res) =>{
-    console.log(req.files);
+    console.log("Archivos", req.file);
+    
     res.render('incidencias/add')
    //res.send('Form')
 
@@ -37,7 +38,8 @@ router.get('/abierta',  isLoggedIn, async(req, res) =>{
 
 router.post('/add', isLoggedIn, async(req, res) =>{
     //Destructuracion del los elementos traidos por req
-    const { usuario_creador,
+    const {
+        usuario_creador,
         usuario_asignado,
         estado_incidencia,
         prioridad_incidencia,
@@ -47,7 +49,6 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         nombre_incidencia, 
         descripcion } = req.body
 
-
     const newIncidencia = {
         usuario_creador,
         categoria_incidencia,
@@ -56,8 +57,12 @@ router.post('/add', isLoggedIn, async(req, res) =>{
         estado_incidencia, 
         descripcion,
     };
+    console.log("newIncidencia",newIncidencia)
+    console.log("ID newIncidencia", id  = req.params)
+    
     //await pool.query(`INSERT INTO tbl_incidencias (id,usuario_creador,usuario_asignado,estado_incidencia,categoria_incidencia,fecha_creacion,fecha_final,nombre_incidencia,descripcion) values (${null},"${usuario_creador}","${usuario_asignado}","${estado_incidencia}","${categoria_incidencia}","${fecha_creacion}","${fecha_final}","${nombre_incidencia}","${descripcion}")`);
     await pool.query(`INSERT INTO tbl_incidencias set ?`, [newIncidencia]);
+    console.log("Files", req.file)
     req.flash('success', 'Incidencia creada correctamente')
     res.redirect('/incidencias/'+usuario_creador);
 })
