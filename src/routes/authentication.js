@@ -36,7 +36,7 @@ router.get('/admin',  isLoggedIn, isAdmin, (req, res) =>{
 
 })
 router.get('/myIncidents',  isLoggedIn, isAdmin1, (req, res) =>{
-    res.render('myIncidents')
+    res.render('admin/myIncidents')
 
 })
 

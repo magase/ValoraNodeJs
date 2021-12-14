@@ -9,16 +9,27 @@ router.get('/add',  isLoggedIn, (req, res) =>{
    //res.send('Form')
 
 });
-router.get('/pendiente',  isLoggedIn, (req, res) =>{
-    res.render('incidencias/pendiente')
+router.get('/pendiente',  isLoggedIn, async(req, res) =>{
+    const usuario  = req.user.nombre_usuario;
+    console.log("Usuario: ", usuario)
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Pendiente" AND  usuario_creador = ?', [usuario])
+    res.render('incidencias/list', { incidencias})
+    console.log(incidencias) 
+ });
+router.get('/abierta',  isLoggedIn, async(req, res) =>{
+    const usuario  = req.user.nombre_usuario;
+    console.log("Usuario: ", usuario)
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Abierta" AND usuario_creador = ? ;', [usuario]);
+
+    res.render('incidencias/list', { incidencias})
  
  });
-router.get('/abierta',  isLoggedIn, (req, res) =>{
-    res.render('incidencias/abierta')
- 
- });
- router.get('/cerrada',  isLoggedIn, (req, res) =>{
-    res.render('incidencias/cerrada')
+ router.get('/cerrada',  isLoggedIn, async(req, res) =>{
+    const usuario  = req.user.nombre_usuario;
+    console.log("Usuario: ", usuario)
+    const incidencias = await pool.query('SELECT * FROM tbl_incidencias where estado_incidencia="Cerrada" AND usuario_creador = ? ;', [usuario]);
+
+    res.render('incidencias/list', { incidencias})
  
  });
  

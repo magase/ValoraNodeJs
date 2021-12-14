@@ -23,7 +23,7 @@ module.exports = {
 
         if (req.user.categoria_usuario == "tecnico"){
             const incidencias = await pool.query('SELECT * FROM tbl_incidencias')
-            return res.render('admin', {incidencias});
+            return res.render('admin/admin', {incidencias});
         } else{
 
         console.log('no sirve')
@@ -38,7 +38,7 @@ isAdmin1: async (req, res, next) => {
         const usuario_asignado = req.user.nombre_usuario
         console.log(usuario_asignado);
         const incidencias = await pool.query('SELECT * FROM tbl_incidencias WHERE usuario_asignado = ?', [usuario_asignado]);
-        return res.render('myIncidents', {incidencias});
+        return res.render('admin/myIncidents', {incidencias});
     } else{
 
     console.log('no sirv4e')
