@@ -1,42 +1,43 @@
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 12px;
     background-color: #F5F5F5;
     display: none;
 }
-::-webkit-scrollbar-track{
-    -webkit-box-shadow:  0 0 6px rgba(0,0,0,0.9);
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
     background-color: #CCCCCC;
 }
-::-webkit-scrollbar-thumb{
+
     background-color: gray;
-    background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 50%,transparent,transparent)
+    background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
 
-.footR{
+.footR {
     position: fixed;
     width: 100%;
     bottom: 0;
 }
 
 @media (max-width: 600px) {
-    .footR{
+    .footR {
         position: absolute;
         width: 100%;
-        bottom:auto;
+        bottom: auto;
     }
-  }
+}
 
-  body {
+body {
     background-color: #f9f9fa;
     scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
 
-.scrollsito{
-    height: 50vh;
+.scrollsito {
+    height: 48vh;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 33vw;
+    width: 38vw;
 }
 
 .padding {
@@ -216,7 +217,7 @@ h6 {
 }
 
 .popup .btn-cerrar-popup:hover {
-   color: #000; 
+    color: #000;
 }
 
 .popup h3 {
@@ -225,6 +226,7 @@ h6 {
     margin-bottom: 10px;
     /* opacity: 0; */
 }
+
 .popup h4 {
     font-size: 19px;
     font-weight: 300;
@@ -261,20 +263,24 @@ h6 {
     background: rgba(94, 125, 227, .9);
 }
 
-small{
+small {
     font-size: 1.2em;
 }
-.hoverOff{
+
+.hoverOff {
     text-decoration: none;
 }
-.padLeft{
+
+.padLeft {
     padding-left: 5.5em;
 }
-.padTb{
+
+.padTb {
 
     padding-bottom: 2em;
 
 }
+
 .new {
     font-size: 12px
 }

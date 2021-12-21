@@ -7,7 +7,6 @@ const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 router.get('/add',  isLoggedIn, (req, res) =>{
    res.render('incidencias/add')
    //res.send('Form')
-
 });
 router.get('/pendiente',  isLoggedIn, async(req, res) =>{
     const usuario  = req.user.nombre_usuario;

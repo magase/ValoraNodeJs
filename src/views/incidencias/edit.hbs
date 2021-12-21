@@ -1,6 +1,9 @@
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-5 mx-auto">
+        <div class="col-md-5 mx-auto" align="center">
+            <span><b>Incidencia # {{incidencias.id}}</b></span>
+            <br>
+            <br>
             <div class="card">
                 <div class="card-body">
                     <form action="/incidencias/edit/{{incidencias.id}}" method="POST" class="form-row">
@@ -64,14 +67,51 @@
         </div>
 
         <div class="col-md-1"></div>
-        <div class="form-group col-12" align="center">
+        <div class="form-group col-12" align="center" style="float: left; width:50%">
             <span><b>Comentarios del técnico</b></span>
+            <br>
             <br>
             <div class="card">
                 <span>
                     {{incidencias.comentarios}}
                 </span>
             </div>
+            <div class="container p-4">
+                <div class="row">
+                    <div class="col-12">
+                        <span><b>Registros</b></span>
+                        <br><br>
+                        <div class="card scrollsito">
+                            <div class="card-body">
+                                <div id="content">
+                                    <ul class="timeline">
+                                        <li class="event" data-date="12:30 - 1:00pm">
+                                            <h3>Proceso 1</h3>
+                                            <p>Encargado
+                                            </p>
+                                        </li>
+                                        <li class="event" data-date="2:30 - 4:00pm">
+                                            <h3>Proceso 2</h3>
+                                            <p>desc 2.</p>
+                                        </li>
+                                        <li class="event" data-date="5:00 - 8:00pm">
+                                            <h3>Proceso 3</h3>
+                                            <p>desc 3</p>
+                                        </li>
+                                        <li class="event" data-date="8:30 - 9:30pm">
+                                            <h3>Proceso 4</h3>
+                                            <p>desc 4</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+
     </div>
 </div>
