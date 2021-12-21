@@ -9,6 +9,7 @@
     background-color: #CCCCCC;
 }
 
+::-webkit-scrollbar-thumb {
     background-color: gray;
     background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
