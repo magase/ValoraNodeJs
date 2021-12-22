@@ -46,6 +46,21 @@
                         </div>
 
                         <div class="form-group col-6">
+                            <span><b>Estado</b></span>
+                            <select class="mdb-select custom-select" name="estado_incidencia">
+                                <option value="{{incidencias.estado}}" selected hidden>
+                                    {{incidencias.estado}}</option>
+                                <option value="No revisado">Pendiente</option>
+                                <option value="En revisión">Abierta</option>
+                                <option value="Finalizado">Cerrada</option>
+                                <option value="Faltan recursos">Cerrada</option>
+                                <option value="Información incompleta">Cerrada</option>
+
+
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6">
                             <span><b>Comentarios del técnico</b></span>
                             <textarea class="form-control" rows="2" placeholder="Comentarios"
                                 name="comentarios">{{incidencias.comentarios}}</textarea>
@@ -81,12 +96,22 @@
                     <div class="col-12">
                         <span><b>Registros</b></span>
                         <br><br>
+                        {{#if user.tecnico}}
+                        <a href="/estado/{{incidencias.id}}/1" class="btn btn-secondary">
+                            <i class="bi bi-pencil"></i>
+                            test
+                        </a>
+                        <a href="/incidencias/estado/2" class="btn btn-secondary">
+                            <i class="bi bi-pencil"></i>
+                            test2
+                        </a>
+                        {{/if}}
                         <div class="card scrollsito">
                             <div class="card-body">
                                 <div id="content">
                                     <ul class="timeline">
                                         <li class="event" data-date="12:30 - 1:00pm">
-                                            <h3>Proceso 1</h3>
+                                            <h3>{{incidencias.estado}}</h3>
                                             <p>Encargado
                                             </p>
                                         </li>

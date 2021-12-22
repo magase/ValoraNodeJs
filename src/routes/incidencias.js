@@ -7,6 +7,7 @@ const {isLoggedIn, isNotLoggedIn, isAdmin} = require('../lib/auth');
 router.get('/add',  isLoggedIn, (req, res) =>{
    res.render('incidencias/add')
    //res.send('Form')
+
 });
 router.get('/pendiente',  isLoggedIn, async(req, res) =>{
     const usuario  = req.user.nombre_usuario;
@@ -100,6 +101,20 @@ router.get('/delete/:id', isLoggedIn, async (req, res)=>{
    
 });
 
+router.get('/estado/:id/1', isLoggedIn, async (req, res)=>{
+    const incidencia = await pool.query('SELECT * FROM tbl_estados WHERE idEstado = 1');
+    res.render('incidencias/edit', { incidencias: incidencia[0]  });
+    const { id } = req.params;
+    console.log(incidencia[0].estado);
+});
+
+router.get('/estado/:id/2', isLoggedIn, async (req, res)=>{
+    const { id } = req.params;
+    const incidencia = await pool.query('SELECT * FROM tbl_estados WHERE idEstado = 2');
+    res.render('incidencias/edit', { incidencias: incidencia[0]  });
+    console.log(incidencia[0].estado);
+});
+
 router.get('/edit/:id', isLoggedIn, async (req, res)=>{
     const { id } = req.params;
     const incidencia = await pool.query('SELECT * FROM tbl_incidencias WHERE id = ?', [id]);
@@ -109,7 +124,7 @@ router.get('/edit/:id', isLoggedIn, async (req, res)=>{
 
 router.post('/edit/:id', isLoggedIn, async (req, res)=>{
     const { id } = req.params;
-    const { usuario_creador, categoria_incidencia, nombre_incidencia, prioridad_incidencia, estado_incidencia, descripcion, comentarios } = req.body;
+    const { usuario_creador, categoria_incidencia, nombre_incidencia, prioridad_incidencia, estado_incidencia, descripcion, comentarios, status } = req.body;
     const newIncidencia = {
         usuario_creador,
         categoria_incidencia,
@@ -117,7 +132,8 @@ router.post('/edit/:id', isLoggedIn, async (req, res)=>{
         prioridad_incidencia,
         estado_incidencia, 
         descripcion,
-        comentarios
+        comentarios, 
+        status
     };
     const usuario = req.user.nombre_usuario
     console.log(usuario_creador)
