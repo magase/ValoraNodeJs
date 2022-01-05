@@ -12,9 +12,3 @@ btnCerrarPopup.addEventListener('click', function(){
     overlay.classList.remove('active');
     popup.classList.remove('active');
 });
-
-window.onload = function() {
-    if (!(req.user.categoria_usuario == "tecnico")){
-        document.getElementById("logo_admin").className.add('d-none');
-    }
-  };

@@ -1,21 +1,22 @@
+<form action="/incidencias/edit/{{incidencias.id}}" method="POST">
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-3 mx-auto">
+        <div class="col-md-5 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/incidencias/edit/{{incidencias.id}}" method="POST">
-                        <div class="form-group">
-                            <span>Título</span>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <span><b>Título</b></span>
                             <input type="text" value="{{incidencias.nombre_incidencia}}" class="form-control"
                                 name="nombre_incidencia" placeholder="Nombre incidencia" autofocus>
                         </div>
-                        <div class="form-group">
-                            <span>Categoría</span>
+                        <div class="form-group col-6">
+                            <span><b>Categoría</b></span>
                             <input type="text" value="{{incidencias.categoria_incidencia}}" class="form-control"
                                 name="categoria_incidencia" placeholder="Categoria">
                         </div>
-                        <div class="form-group">
-                            <span>Prioridad</span>
+                        <div class="form-group col-6">
+                            <span><b>Prioridad</b></span>
                             <select class="mdb-select custom-select" name="prioridad_incidencia">
                                 <option value="{{incidencias.prioridad_incidencia}}" selected hidden>
                                     {{incidencias.prioridad_incidencia}}</option>
@@ -24,16 +25,10 @@
                                 <option value="Alta">Alta</option>
                             </select>
                         </div>
-                        <div class="form-group" style="display: none">
-                            <select class="mdb-select custom-select" name="usuario_creador">
-                                <option value='{{user.nombre_usuario}}' selected></option>
-                            </select>
-                        </div>
+                        
                         {{#if user.tecnico}}
-                        <div class="form-group">
-                            <select class="mdb-select custom-select" name="estado_incidencia" >
-
-                            <span>Estado</span>
+                        <div class="form-group col-6" >
+                            <span><b>Estado</b></span>
                             <select class="mdb-select custom-select" name="estado_incidencia">
                                 <option value="{{incidencias.estado_incidencia}}" selected hidden>
                                     {{incidencias.estado_incidencia}}</option>
@@ -43,64 +38,106 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <span>Comentarios del técnico</span>
-                            <textarea class="form-control" rows="2" placeholder="Comentarios"
-                                name="comentarios">{{incidencias.comentarios}}</textarea>
-                        </div>
+                        
                         {{/if}}
-                        <div class="form-group">
-                            <span>Descripción</span>
+                        <div class="form-group col-6">
+                            <span><b>Descripción</b></span>
                             <textarea class="form-control" rows="2" placeholder="Descripcion"
                                 name="descripcion">{{incidencias.descripcion}}</textarea>
                         </div>
-                        <span>Comentarios del técnico</span>
+                        <div class="form-group col-12">
+                        <span ><b>Comentarios del técnico</b></span>
                         <br>
                         <div class="card">
                             <span>
                                 {{incidencias.comentarios}}
                             </span>
                         </div>
-                        <div class="form-group">
+                        </div>
+                        <div class="form-group col-12">
                             <button class="btn btn-success btn-block">
                                 Guardar
                             </button>
                         </div>
-                    </form>
+                     
                 </div>
             </div>
         </div>
-
+</div>
         <div class="col-md-1"></div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-body">
-                    <div id="content">
-                        <ul class="timeline">
-                            <li class="event" data-date="12:30 - 1:00pm">
-                                <h3>Registration</h3>
-                                <p>Get here on time, it's first come first serve. Be late, get turned away.</p>
-                            </li>
-                            <li class="event" data-date="2:30 - 4:00pm">
-                                <h3>Opening Ceremony</h3>
-                                <p>Get ready for an exciting event, this will kick off in amazing fashion with MOP &amp;
-                                    Busta Rhymes as an opening show.</p>
-                            </li>
-                            <li class="event" data-date="5:00 - 8:00pm">
-                                <h3>Main Event</h3>
-                                <p>This is where it all goes down. You will compete head to head with your friends and
-                                    rivals. Get ready!</p>
-                            </li>
-                            <li class="event" data-date="8:30 - 9:30pm">
-                                <h3>Closing Ceremony</h3>
-                                <p>See how is the victor and who are the losers. The big stage is where the winners bask
-                                    in their own glory.</p>
-                            </li>
-                        </ul>
+                <div class="card-body" id="timeline">
+                   
+                        <div id="content">
+                            <ul class="timeline">
+                                <li class="event" id="li1" data-date="12:30 - 1:00pm">
+                                    <h3>Registration</h3>
+                                    <p>Get here on time, it's first come first serve. Be late, get turned away.</p>
+                                        <button id="marcar1" type="button" class="btn btn-primary">Hecho</button>
+                                        <button id="desmarcar1" type="button" class="btn btn-danger">Cancelar</button>
+                                    
+                                </li>
+                                <li class="event" id="li2" data-date="2:30 - 4:00pm">
+                                    <h3>Opening Ceremony</h3>
+                                    <p>Get ready for an exciting event, this will kick off in amazing fashion with MOP &amp;
+                                        Busta Rhymes as an opening show.</p>
+                                        <button id="marcar2" type="button" class="btn btn-primary">Hecho</button>
+                                        <button id="desmarcar2" type="button" class="btn btn-danger">Cancelar</button>
+                                </li>
+                                <li class="event" id="li3" data-date="5:00 - 8:00pm">
+                                    <h3>Main Event</h3>
+                                    <p>This is where it all goes down. You will compete head to head with your friends and
+                                        rivals. Get ready!</p>
+                                        <button id="marcar3" type="button" class="btn btn-primary">Hecho</button>
+                                        <button id="desmarcar3" type="button" class="btn btn-danger">Cancelar</button>
+                                </li>
+                                <li class="event" id="li4" data-date="8:30 - 9:30pm">
+                                    <h3>Closing Ceremony</h3>
+                                    <p>See how is the victor and who are the losers. The big stage is where the winners bask
+                                        in their own glory.</p>
+                                        <button id="marcar4" type="button" class="btn btn-primary">Hecho</button>
+                                        <button id="desmarcar4" type="button" class="btn btn-danger">Cancelar</button>
+                                </li>
+                            </ul>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        {{#if user.tecnico}}
+        <div class="col-md-5">
+            <div class="card">
+                <div class="container card-body" id="comentarios">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <span><b>Comentarios del técnico</b></span>
+                                <textarea class="form-control" rows="2" placeholder="Comentarios"
+                                            name="comentarios"></textarea>
+                        </div>
+                        <div class="form-group col-6">
+                            <span ><b>Comentarios del técnico</b></span>
+                                <br>
+                                    <div class="card">
+                                        <span>
+                                            {{incidencias.comentarios}}
+                                        </span>
+                                    </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <button class="btn btn-success btn-block">
+                                Guardar
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+             </div>
         </div>
+        </div>
+        {{/if}}
+      
+     
 
     </div>
 </div>
+</form>
