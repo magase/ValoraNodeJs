@@ -11,14 +11,14 @@
     background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 50%,transparent,transparent)
 }
 
-.footR{
+.foot-r{
     position: fixed;
     width: 100%;
     bottom: 0;
 }
 
 @media (max-width: 600px) {
-    .footR{
+    .foot-r{
         position: absolute;
         width: 100%;
         bottom:auto;
@@ -253,20 +253,22 @@ h6 {
     background: rgba(94, 125, 227, .9);
 }
 
-small{
+small {
     font-size: 1.2em;
 }
-.hoverOff{
+
+.hover-off {
     text-decoration: none;
 }
-.padLeft{
+
+.pad-left {
     padding-left: 5.5em;
 }
-.padTb{
 
+.pad-tb {
     padding-bottom: 2em;
-
 }
+
 .new {
     font-size: 12px
 }
